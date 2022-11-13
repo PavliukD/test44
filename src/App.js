@@ -6,7 +6,8 @@ import {fetchProducts} from './redux/operations/operations'
 
 import { Shop } from './pages/store';
 import { Cart } from './pages/cart';
-import { Header } from './components/header';
+import { Header } from './components/common/header';
+import { Product } from './pages/product';
 
 const App = () => {
   const dispatch = useDispatch()
@@ -19,8 +20,9 @@ const App = () => {
     <>
       <Header/>
       <Routes>
-          <Route path='/' element={<Shop/>}/>
-          <Route path='/cart' element={<Cart/>}/>
+        <Route path='/' element={<Shop/>}/>
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/product/:id' element={<Product/> } />
       </Routes>
     </>
   );

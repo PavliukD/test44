@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchProducts } from "../operations/operations";
+import { addToCart, changeView, fetchProducts, removeFromCart, clearPage, changeQuantity } from "../operations/operations";
 
-const initialState = {
-    productsList: []
+export const initialState = {
+    productsList: [],
+    view: "list",
+    cart: []
 }
 
 const Slice = createSlice({
@@ -10,7 +12,7 @@ const Slice = createSlice({
     initialState,
     reducers: {
         clearPage: (state) => {
-          state.currentPage = initialState.currentPage;
+          state = initialState;
         },
       },
     extraReducers: {
@@ -19,9 +21,35 @@ const Slice = createSlice({
         },
         [fetchProducts.rejected]: (state) => {
             state.productsList = []
+        },
+        [addToCart.fulfilled]: (state, action) => {
+            state.cart.push(action.payload)
+        },
+        [removeFromCart.fulfilled]: (state, action) => {
+            const index = state.cart.findIndex(item => item.id === action.payload.id)
+            state.cart.splice(index, 1)
+        },
+        [changeView.fulfilled]: (state, action) => {
+            state.view = action.payload.view
+        },
+        [clearPage.fulfilled]: (state, action) => {
+            state.cart = []
+        },
+        [changeQuantity.fulfilled]: (state, action) => {
+            const { id, quantity } = action.payload
+            const index = state.cart.findIndex(item => item.id === id)
+            let q = quantity
+            if (q < 1) {
+                q = 1
+            }
+            
+            const newData = {
+                ...action.payload,
+                quantity: q
+            }
+            state.cart.splice(index, 1, newData)
         }
     }
 })
-
 
 export default Slice.reducer

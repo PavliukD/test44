@@ -4,7 +4,7 @@ const ContainerWrap = styled.div`
     margin: auto;
     width: 100%;
     max-width: 1200px;
-    background-color: LightGrey;
+    background-color: Gainsboro;
     border-radius: 10px;
     
 `

@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 
-import { ProductCardList } from "./common/productCardList";
-import {ProductCardTable} from "./common/productCardTable";
+import { CartCardList } from "./common/cartCardsList";
+import { CartCardTable } from "./common/cartCardsTable";
+
 
 const List = styled.ul`
     display: flex;
@@ -10,7 +11,7 @@ const List = styled.ul`
     width: 100%;
 `
 
-export const ProductsList = ({products}) => {
+export const CartList = ({ products }) => {
 
     const { view } = useSelector((state) =>  state.slice)
     return(
@@ -18,10 +19,10 @@ export const ProductsList = ({products}) => {
             {products.map(product => {
                 if (view === 'list') {
                     return (
-                    <ProductCardList key={product.id} product={product}></ProductCardList>
+                    <CartCardList key={product.id} product={product}></CartCardList>
                     )
                 } else if (view === 'table') {
-                    return <ProductCardTable key={product.id} product={product}></ProductCardTable>
+                    return <CartCardTable key={product.id} product={product}></CartCardTable>
                 }
             })}
         </List>

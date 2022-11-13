@@ -1,4 +1,4 @@
-import { createAsyncThunk, getState } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "../../api/api";
 
 export const fetchProducts = createAsyncThunk(
@@ -10,5 +10,41 @@ export const fetchProducts = createAsyncThunk(
         } catch (e) {
             return rejectWithValue(e)
         }
+    }
+)
+
+export const addToCart = createAsyncThunk(
+    'cart/addToCart',
+    (data) => {
+        console.log(data)
+        return data
+    }
+)
+
+export const removeFromCart = createAsyncThunk(
+    'cart/removeFromCart',
+    (data) => {
+        return data
+    }
+)
+
+export const changeView = createAsyncThunk(
+    'view/changeView',
+    (data) => {
+        return data
+    }
+)
+
+export const clearPage = createAsyncThunk(
+    'cart/clearPage',
+    () => {
+        return 
+    }
+)
+
+export const changeQuantity = createAsyncThunk(
+    'cart/changeQuantity',
+    (data) => {
+        return data
     }
 )

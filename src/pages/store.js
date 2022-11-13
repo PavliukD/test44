@@ -1,22 +1,8 @@
-import styled from 'styled-components'
 import { useSelector } from "react-redux/es/exports"
-import { useState, useEffect } from "react";
 
-import { Container } from '../components/container';
+import { Container } from '../components/common/container';
 import { ProductsList } from '../components/productsList';
-
-const SectionHead = styled.div`
-    display: flex;
-    justify-content: space-between;
-`
-const Title = styled.h2`
-`
-
-const ButtonsWrap = styled.div`
-`
-
-const Button = styled.button`
-`
+import { SectionHead } from '../components/sectionHead';
 
 export const Shop = () => {
 
@@ -24,13 +10,7 @@ export const Shop = () => {
 
     return (
         <Container>
-            <SectionHead>
-                <Title>Our products</Title>
-                <ButtonsWrap>
-                    <Button></Button>
-                    <Button></Button>
-                </ButtonsWrap>
-            </SectionHead>
+            <SectionHead title='Our products'/>
             <ProductsList products={productsList}></ProductsList>
         </Container>
     )
