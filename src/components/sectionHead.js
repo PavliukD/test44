@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 import { ViewButton } from './common/viewButton'
+import { Icon } from "./common/icon";
+import icons from "../img/symbol-defs.svg"
 
 const Wrap = styled.div`
     display: flex;
@@ -27,10 +29,13 @@ export const SectionHead = ({ title }) => {
 
     return (
         <Wrap>
-            <Title>{ title }</Title>
+            <Title>{title}</Title>
+            
             <ButtonsWrap>
-                <ViewButton viewType='list'></ViewButton>
-                <ViewButton viewType='table'></ViewButton>
+                <ViewButton viewType='list'>
+                    <Icon icon={`${icons}#icon-th-list-outline`}></Icon>
+                </ViewButton>
+                <ViewButton viewType='table'><Icon icon={`${icons}#icon-th-small-outline`}></Icon></ViewButton>
             </ButtonsWrap>
         </Wrap>
     )

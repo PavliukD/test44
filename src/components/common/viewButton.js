@@ -4,11 +4,14 @@ import { changeView } from '../../redux/operations/operations';
 import {useState, useEffect} from "react"
 
 const Button = styled.button`
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 30px;
     height: 30px;
     border-radius: 5px;
     border: none;
+    padding: 0;
     background-color: ${({active}) => (active ? "orange" : "grey")};
 
     :hover,
@@ -21,7 +24,7 @@ const Button = styled.button`
     }
 `
 
-export const ViewButton = ({ viewType }) => {
+export const ViewButton = ({ viewType, children }) => {
     const [active, setActive] = useState(false)
 
     
@@ -49,7 +52,8 @@ export const ViewButton = ({ viewType }) => {
         <Button
             type='button'
             onClick={onClickButton}
-            active = {active}> 
+            active={active}> 
+            {children}
         </Button>
     )
 }

@@ -4,6 +4,7 @@ import { Button } from "./Button";
 import { Link } from "./link";
 
 
+
 const Card = styled.li`
     display: flex;
     width: 100%;
@@ -64,7 +65,6 @@ const ButtonsWrap = styled.div`
 `
 
 export const ProductCardList = ({ product }) => {
-    
 
     const { image, price, title, id } = product
     
