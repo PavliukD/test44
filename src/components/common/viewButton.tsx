@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import {  useDispatch, useSelector } from "react-redux/es/exports"
+import { useDispatch, useSelector } from "react-redux/es/exports"
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { changeView } from '../../redux/operations/operations';
 import {useState, useEffect} from "react"
 
@@ -24,13 +25,22 @@ const Button = styled.button`
     }
 `
 
-export const ViewButton = ({ viewType, children }) => {
+type View = {
+    viewType: "list" | "table",
+    children: any,
+}
+
+interface State {
+    slice: {
+        view: "list" | "table",
+    }
+}
+
+export const ViewButton: React.FC<View> = ({ viewType, children }) => {
     const [active, setActive] = useState(false)
 
-    
-
-    const dispatch = useDispatch()
-    const { view } = useSelector((state) =>  state.slice)
+    const dispatch = useAppDispatch()
+    const { view } = useSelector((state: State) =>  state.slice)
 
     // eslint-disable-next-line
     useEffect(() => {
@@ -42,7 +52,6 @@ export const ViewButton = ({ viewType, children }) => {
     })
 
     const onClickButton = () => {
-        
         dispatch(changeView({
             view: viewType
         }))

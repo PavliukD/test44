@@ -9,9 +9,14 @@ const StyledInput = styled.input`
     text-align: center
 `
 
-export const Input = ({ value, setValue }) => {
+type Props = {
+    value: number,
+    setValue?: any;
+}
+
+export const Input: React.FC<Props> = ({ value, setValue }) => {
     
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
     }
 

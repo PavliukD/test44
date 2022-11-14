@@ -24,7 +24,12 @@ const StyledLink = styled(NavLink)`
     }
 `
 
-export const Link = ({ link, title}) => {
+type Props = {
+    link: string,
+    title: string
+}
+
+export const Link: React.FC<Props> = ({ link, title}) => {
     return (
         <StyledLink to={link}>{ title }</StyledLink>
     )
