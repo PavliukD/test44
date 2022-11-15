@@ -25,22 +25,11 @@ const Button = styled.button`
     }
 `
 
-type View = {
-    viewType: "list" | "table",
-    children: any,
-}
-
-interface State {
-    slice: {
-        view: "list" | "table",
-    }
-}
-
-export const ViewButton: React.FC<View> = ({ viewType, children }) => {
+export const ViewButton = ({ viewType, children }) => {
     const [active, setActive] = useState(false)
 
-    const dispatch = useAppDispatch()
-    const { view } = useSelector((state: State) =>  state.slice)
+    const dispatch = useDispatch()
+    const { view } = useSelector((state) =>  state.slice)
 
     // eslint-disable-next-line
     useEffect(() => {
@@ -52,6 +41,7 @@ export const ViewButton: React.FC<View> = ({ viewType, children }) => {
     })
 
     const onClickButton = () => {
+        
         dispatch(changeView({
             view: viewType
         }))
