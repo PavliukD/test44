@@ -35,9 +35,9 @@ export const CartList: React.FC<Props> = ({ products }) => {
                     return (
                     <CartCardList key={product.id} product={product}></CartCardList>
                     )
-                } else if (view === 'table') {
+                } 
                     return <CartCardTable key={product.id} product={product}></CartCardTable>
-                }
+                
             })}
         </List>
     )

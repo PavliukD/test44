@@ -118,6 +118,7 @@ export const CartCardTable: React.FC<Props> = ({ product }) => {
             }
         })
         dispatch(changeQuantity(data))
+        // eslint-disable-next-line
     }, [quantity])
 
     return(

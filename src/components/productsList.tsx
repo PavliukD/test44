@@ -44,9 +44,9 @@ export const ProductsList: React.FC<Props> = ({products}) => {
                     return (
                     <ProductCardList key={product.id} product={product}></ProductCardList>
                     )
-                } else if (view === 'table') {
+                } 
                     return <ProductCardTable key={product.id} product={product}></ProductCardTable>
-                }
+                
             })}
         </List>
     )

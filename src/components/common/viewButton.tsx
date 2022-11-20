@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { useDispatch, useSelector } from "react-redux/es/exports"
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/hooks';
 import { useState, useEffect } from "react";
 import { changeView } from '../../redux/reducers/slice';

@@ -52,7 +52,7 @@ export const Cart: React.FC = () => {
     useEffect(() => {
         const total = cart.reduce((total, product) => total + product.price * product.quantity, 0)
         setTotalPrice(total)
-    })
+    }, [cart])
     
     const clickButton = () => {
         alert('Вообще тут должна быть функция, которая в зависимости от ситуации либо выведет модалку с формой уточнения заказа, либо функция, которая сразу запрос на бэк отправит. A а пока я просто почищу state')
