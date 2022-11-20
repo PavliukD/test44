@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 
-import { Button } from "./Button.tsx";
+import { Button } from "./Button";
 import { Link } from "./link";
 import { Input } from "./input";
 import { changeQuantity } from "../../redux/reducers/slice";
@@ -68,21 +68,42 @@ const ButtonsWrap = styled.div`
     margin-bottom: 10px;
 `
 
-export const CartCardList = ({ product }) => {
+type Product = {
+    category: string,
+    description: string,
+    id: number,
+    image: string,
+    price: number,
+    title: string,
+    quantity: number
+}
+
+type Props = {
+    product: Product
+}
+
+export const CartCardList: React.FC<Props> = ({ product }) => {
     
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const { image, price, title, id } = product
 
     const [quantity, setQuantity] = useState(product.quantity)
+    const cart = useAppSelector(state => state.slice.cart)
 
     useEffect(() => {
         if (quantity < 1) {
             setQuantity(1)
         }
-        dispatch(changeQuantity({
-            ...product,
-            quantity
-        }))
+        let data = cart.map(item => {
+            if (item.id !== id) {
+                return item
+            }
+            return {
+                ...item,
+                quantity
+            }
+        })
+        dispatch(changeQuantity(data))
     }, [quantity])
     
     return(
@@ -115,7 +136,6 @@ export const CartCardList = ({ product }) => {
                     setValue={setQuantity}
                 ></Input>
             </Wrap>
-            
         </Card>
     )
 }

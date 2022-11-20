@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { changeQuantity } from "../../redux/reducers/slice";
 
-import { Button } from "./Button.tsx";
+import { Button } from "./Button";
 import { Link } from "./link";
 import { Input } from "./input";
 
@@ -82,23 +82,44 @@ const ButtonsWrap = styled.div`
     justify-content: center;
 `
 
+type Product = {
+    category: string,
+    description: string,
+    id: number,
+    image: string,
+    price: number,
+    title: string,
+    quantity: number
+}
 
-export const CartCardTable = ({ product }) => {
+type Props = {
+    product: Product
+}
+
+export const CartCardTable: React.FC<Props> = ({ product }) => {
     
-       const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const { image, price, title, id } = product
 
     const [quantity, setQuantity] = useState(product.quantity)
+    const cart = useAppSelector(state => state.slice.cart)
 
     useEffect(() => {
         if (quantity < 1) {
             setQuantity(1)
         }
-        dispatch(changeQuantity({
-            ...product,
-            quantity
-        }))
+        let data = cart.map(item => {
+            if (item.id !== id) {
+                return item
+            }
+            return {
+                ...item,
+                quantity
+            }
+        })
+        dispatch(changeQuantity(data))
     }, [quantity])
+
     return(
         <Card>
             <ImageWrap>

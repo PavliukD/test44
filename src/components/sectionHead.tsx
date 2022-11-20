@@ -24,7 +24,11 @@ const ButtonsWrap = styled.div`
 `
 
 
-export const SectionHead = ({ title }) => {
+type Props = {
+    title: string
+}
+
+export const SectionHead: React.FC<Props> = ({ title }) => {
 
 
     return (

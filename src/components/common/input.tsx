@@ -10,13 +10,13 @@ const StyledInput = styled.input`
 
 type Props = {
     value: number,
-    setValue: (arg: string) => void;
+    setValue: (arg: number) => void;
 }
 
 export const Input: React.FC<Props> = ({ value, setValue }) => {
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value)
+        setValue(Number(e.target.value))
     }
 
     return (

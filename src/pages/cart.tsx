@@ -1,5 +1,7 @@
-import { useAppSelector } from "../redux/hooks/hooks";
+import { useAppSelector, useAppDispatch } from "../redux/hooks/hooks";
 import styled from "styled-components";
+import { useState, useEffect } from "react";
+import { clearPage } from "../redux/reducers/slice";
 
 import { Container } from '../components/common/container';
 import { SectionHead } from '../components/sectionHead';
@@ -42,13 +44,19 @@ const Button = styled.button`
 `
 
 export const Cart: React.FC = () => {
+    const [totalPrice, setTotalPrice] = useState(0)
+    const dispatch = useAppDispatch()
 
     const { cart } = useAppSelector((state) => state.slice)
 
-    const totalPrice = cart.reduce((total, product) => total + product.price * product.quantity, 0)
-
+    useEffect(() => {
+        const total = cart.reduce((total, product) => total + product.price * product.quantity, 0)
+        setTotalPrice(total)
+    })
+    
     const clickButton = () => {
-        alert('Вообще тут должна быть функция, которая в зависимости от ситуации либо выведет модалку с формой уточнения заказа, либо функция, которая сразу запрос на бэк отправит')
+        alert('Вообще тут должна быть функция, которая в зависимости от ситуации либо выведет модалку с формой уточнения заказа, либо функция, которая сразу запрос на бэк отправит. A а пока я просто почищу state')
+        dispatch(clearPage())
     }
 
     return (

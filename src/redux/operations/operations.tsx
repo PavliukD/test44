@@ -20,7 +20,6 @@ export const fetchProducts = createAsyncThunk<Data, undefined, {rejectValue: str
         if (!data) {
             return rejectWithValue('Can`t get data. Server error')
         }
-        console.log(data)
         return data
     }
 )

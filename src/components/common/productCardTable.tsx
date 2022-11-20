@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Button } from "./Button.tsx";
+import { Button } from "./Button";
 import { Link } from "./link";
 
 const Card = styled.li`
@@ -78,8 +78,20 @@ const ButtonsWrap = styled.div`
     justify-content: center;
 `
 
+type Product = {
+    category: string,
+    description: string,
+    id: number,
+    image: string,
+    price: number,
+    title: string,
+}
 
-export const ProductCardTable = ({ product }) => {
+type Props = {
+    product: Product
+}
+
+export const ProductCardTable: React.FC<Props> = ({ product }) => {
     
     const {image, price, title, id} = product
     return(

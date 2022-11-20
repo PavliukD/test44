@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../redux/hooks/hooks";
 
 import { ProductCardList } from "./common/productCardList";
 import {ProductCardTable} from "./common/productCardTable";
@@ -18,9 +18,22 @@ const Notification = styled.h3`
     color: tomato;
 `
 
-export const ProductsList = ({products}) => {
+type Product = {
+    category: string,
+    description: string,
+    id: number,
+    image: string,
+    price: number,
+    title: string
+}
 
-    const { view } = useSelector((state) => state.slice)
+type Props = {
+    products: Product[]
+}
+
+export const ProductsList: React.FC<Props> = ({products}) => {
+
+    const { view } = useAppSelector((state) => state.slice)
     
 
     return(

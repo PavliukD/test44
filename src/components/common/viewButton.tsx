@@ -4,7 +4,11 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks/hooks';
 import { useState, useEffect } from "react";
 import { changeView } from '../../redux/reducers/slice';
 
-const Button = styled.button`
+type ButtonProps = {
+    active: boolean
+}
+
+const Button = styled.button<ButtonProps>`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,11 +29,16 @@ const Button = styled.button`
     }
 `
 
-export const ViewButton = ({ viewType, children }) => {
+type Props = {
+    viewType: "list" | "table",
+    children: any
+}
+
+export const ViewButton: React.FC<Props> = ({ viewType, children }) => {
     const [active, setActive] = useState(false)
 
-    const dispatch = useDispatch()
-    const { view } = useSelector((state) =>  state.slice)
+    const dispatch = useAppDispatch()
+    const { view } = useAppSelector((state) =>  state.slice)
 
     // eslint-disable-next-line
     useEffect(() => {

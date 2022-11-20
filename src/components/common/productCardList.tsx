@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Button } from "./Button.tsx";
+import { Button } from "./Button";
 import { Link } from "./link";
 
 
@@ -64,7 +64,20 @@ const ButtonsWrap = styled.div`
     margin-top: 10px;
 `
 
-export const ProductCardList = ({ product }) => {
+type Product = {
+    category: string,
+    description: string,
+    id: number,
+    image: string,
+    price: number,
+    title: string,
+}
+
+type Props = {
+    product: Product
+}
+
+export const ProductCardList: React.FC<Props> = ({ product }) => {
 
     const { image, price, title, id } = product
     

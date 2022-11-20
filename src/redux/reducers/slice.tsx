@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {  fetchProducts } from "../operations/operations";
 
-
 type Product = {
     category: string,
     description: string,
@@ -50,14 +49,8 @@ const Slice = createSlice({
         clearPage: (state) => {
             state.cart = []
         },
-        changeQuantity: (state, action: PayloadAction<{ id: number, quantity: number }>) => {
-            const { id, quantity } = action.payload
-            let data: Cart[] = { ...state.cart }
-            let q = quantity
-            if (q < 1) {
-                q = 1
-            }
-            console.log(data)
+        changeQuantity: (state, action: PayloadAction<Cart[]>) => {
+            state.cart = action.payload
         }
       },
     extraReducers: builder => {
