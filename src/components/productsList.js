@@ -10,11 +10,22 @@ const List = styled.ul`
     width: 100%;
 `
 
+const Notification = styled.h3`
+    padding-top: 60px;
+    padding-bottom: 60px;
+    text-align: center;
+    font-size: 32px;
+    color: tomato;
+`
+
 export const ProductsList = ({products}) => {
 
-    const { view } = useSelector((state) =>  state.slice)
+    const { view } = useSelector((state) => state.slice)
+    
+
     return(
-        <List>
+        !products ? <Notification>Oops, something went wrong</Notification> :
+            <List>
             {products.map(product => {
                 if (view === 'list') {
                     return (

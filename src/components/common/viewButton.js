@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import { useDispatch, useSelector } from "react-redux/es/exports"
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { changeView } from '../../redux/operations/operations';
-import {useState, useEffect} from "react"
+import { useAppDispatch, useAppSelector } from '../../redux/hooks/hooks';
+import { useState, useEffect } from "react";
+import { changeView } from '../../redux/reducers/slice';
 
 const Button = styled.button`
     display: flex;
@@ -42,9 +42,7 @@ export const ViewButton = ({ viewType, children }) => {
 
     const onClickButton = () => {
         
-        dispatch(changeView({
-            view: viewType
-        }))
+        dispatch(changeView(viewType))
     }
 
     return (

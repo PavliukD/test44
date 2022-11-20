@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const StyledInput = styled.input`
-    // margin-top: 10px;
     font-size: 18px;
     line-height: 1.2;
     width: 80px;
@@ -11,7 +10,7 @@ const StyledInput = styled.input`
 
 type Props = {
     value: number,
-    setValue?: any;
+    setValue: (arg: string) => void;
 }
 
 export const Input: React.FC<Props> = ({ value, setValue }) => {

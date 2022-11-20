@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
+import { addToCart, removeFromCart } from "../../redux/reducers/slice";
+import { useAppSelector, useAppDispatch } from "../../redux/hooks/hooks";
 
-import { addToCart, removeFromCart, clearPage} from "../../redux/operations/operations";
 
 
 const StyledButton = styled.button`
@@ -26,10 +26,25 @@ const StyledButton = styled.button`
     }
 `
 
-export const Button = ({ func, title, data }) => {
+type Product = {
+    category: string,
+    description: string,
+    id: number,
+    image: string,
+    price: number,
+    title: string
+}
 
-    const { cart = [] } = useSelector((state) => state.slice)
-    const dispatch = useDispatch()
+type Props = {
+    func: "add" | "remove",
+    title: string,
+    data: Product
+}
+
+export const Button: React.FC<Props> = ({ func, title, data }) => {
+
+    const { cart = [] } = useAppSelector((state) => state.slice)
+    const dispatch = useAppDispatch()
  
     const {id} = data
 
@@ -41,15 +56,12 @@ export const Button = ({ func, title, data }) => {
         dispatch(addToCart({
             ...data,
             quantity: 1
-            
         }))
         alert('the product has been successfully added to the cart')
     } 
     
     const remove = () => {
-        dispatch(removeFromCart({
-            id
-        }))
+        dispatch(removeFromCart(id))
     }
 
     const onClickButton = () => {
@@ -59,7 +71,6 @@ export const Button = ({ func, title, data }) => {
         } else if (func === 'remove') {
             remove()
         }
-        // dispatch(clearPage())
     }
 
     return (

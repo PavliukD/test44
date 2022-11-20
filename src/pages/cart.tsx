@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux/es/exports"
+import { useAppSelector } from "../redux/hooks/hooks";
 import styled from "styled-components";
 
 import { Container } from '../components/common/container';
@@ -41,9 +41,9 @@ const Button = styled.button`
         box-shadow: 0px 0px 21px -1px #FF8C00;
 `
 
-export const Cart = () => {
+export const Cart: React.FC = () => {
 
-    const { cart = [] } = useSelector((state) => state.slice)
+    const { cart } = useAppSelector((state) => state.slice)
 
     const totalPrice = cart.reduce((total, product) => total + product.price * product.quantity, 0)
 

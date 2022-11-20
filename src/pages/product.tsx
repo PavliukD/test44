@@ -1,10 +1,9 @@
 import styled from 'styled-components'
-import { useSelector } from "react-redux/es/exports"
+import { useAppSelector } from '../redux/hooks/hooks';
 import { useParams } from 'react-router';
 
 import { Container } from '../components/common/container';
 import { Button } from '../components/common/Button';
-import { Header } from '../components/common/header';
 
 const Wrap = styled.div`
     display: flex;
@@ -46,12 +45,28 @@ const ControlWrap = styled.div`
     display: flex;
 `
 
+const Notification = styled.h3`
+    padding-top: 60px;
+    padding-bottom: 60px;
+    text-align: center;
+    font-size: 32px;
+    color: tomato;
+`
 
-export const Product = () => {
+
+export const Product: React.FC = () => {
     const {id} = useParams()
-    const { productsList } = useSelector((state) => state.slice)
+    const { productsList } = useAppSelector((state) => state.slice)
     
     const product = productsList.find(el => el.id === Number(id))
+
+    if (!product) {
+        return (
+            <Container>
+                <Notification>{`Oops, product with id=${ id } not found`}</Notification>
+            </Container>
+        )
+    }
 
     const {title, image, description, price} = product
 

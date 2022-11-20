@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Button } from "./Button";
+import { Button } from "./Button.tsx";
 import { Link } from "./link";
 
 const Card = styled.li`

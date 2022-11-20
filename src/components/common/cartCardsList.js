@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Button } from "./Button";
+import { Button } from "./Button.tsx";
 import { Link } from "./link";
 import { Input } from "./input";
-import { changeQuantity } from "../../redux/operations/operations";
+import { changeQuantity } from "../../redux/reducers/slice";
 
 
 const Card = styled.li`

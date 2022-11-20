@@ -1,16 +1,15 @@
-import React from 'react';
 import { Route, Routes } from 'react-router';
-import {useDispatch} from "react-redux"
+import { useAppDispatch } from './redux/hooks/hooks';
 import { useEffect } from "react"
 import {fetchProducts} from './redux/operations/operations'
 
-import { Shop } from './pages/store';
+import { Shop } from './pages/shop';
 import { Cart } from './pages/cart';
 import { Header } from './components/common/header';
 import { Product } from './pages/product';
 
-const App = () => {
-  const dispatch = useDispatch()
+const App: React.FC = () => {
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     dispatch(fetchProducts())
