@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../redux/hooks/hooks";
 
 import { CartCardList } from "./common/cartCardsList";
 import { CartCardTable } from "./common/cartCardsTable";
@@ -11,9 +11,23 @@ const List = styled.ul`
     width: 100%;
 `
 
-export const CartList = ({ products }) => {
+type Product = {
+    category: string,
+    description: string,
+    id: number,
+    image: string,
+    price: number,
+    title: string,
+    quantity: number
+}
 
-    const { view } = useSelector((state) =>  state.slice)
+type Props = {
+    products: Product[]
+}
+
+export const CartList: React.FC<Props> = ({ products }) => {
+
+    const { view } = useAppSelector((state) => state.slice)
     return(
         <List>
             {products.map(product => {
@@ -21,9 +35,9 @@ export const CartList = ({ products }) => {
                     return (
                     <CartCardList key={product.id} product={product}></CartCardList>
                     )
-                } else if (view === 'table') {
+                } 
                     return <CartCardTable key={product.id} product={product}></CartCardTable>
-                }
+                
             })}
         </List>
     )

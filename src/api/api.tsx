@@ -4,11 +4,24 @@ const URL = "https://fakestoreapi.com"
 
 axios.defaults.baseURL = URL
 
-export const api = {
+type Product = {
+    category: string,
+    description: string,
+    id: number,
+    image: string,
+    price: number,
+    title: string
+}
+
+type Response = {
+    data: Product[]
+}
+
+export const api: any = {
     get: async () => {
         try {
             const resp = await axios.get('/products')
-            return resp
+            return resp as Response
         } catch (e) {
             return e
         }

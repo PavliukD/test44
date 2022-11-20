@@ -3,67 +3,47 @@ import styled from "styled-components";
 import { Button } from "./Button";
 import { Link } from "./link";
 
+
+
 const Card = styled.li`
-    display: block;
-    width: calc((100% - 30px)/2);
-    margin-top 20px;
-    box-shadow: 10px 10px 14px -5px rgba(0,0,0,0.84);
-    padding: 10px 15px;
-
-    :not(:nth-child(3n + 1)){
-        margin-left: 10px;
-        }
-
-        :nth-child(3n + 1){
-            margin-left: 10px;
-        }
+    display: flex;
+    width: 100%;
+    height: 210px;
+    padding: 10px 40px;
+    :nth-child(2n+1){
+        background-color: Silver;
     }
-
-    @media (min-width: 900px){
-        width: calc((100% - 60px)/3);
-
-        :not(:nth-child(3n + 1)){
-        margin-left: 20px;
-        }
-
-        :nth-child(3n + 1){
-            margin-left: 10px;
-        }
-    }
-
 `
 
 const ImageWrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 240px;
+    width: 240px;
+    height: 100%;
 `
 
 const ProductImg = styled.img`
     display: block;
-    max-height: 200px;
+    height: 100%;
     max-width: 100%;
     object-fit: contain;
+    // max-width: 180px;
+    // height: auto;
 `
+
+const TextWrap = styled.div`
+    max-width: 30%;
+    margin-left: 20px
+`
+
 const ProductTitle = styled.h3`
     color: Grey;
-    height: 75px;
-    // display: block;
 `
 
 const Text = styled.p`
     color: Grey;
     font-weight: 500;
-`
-
-const Wrap = styled.div`
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 20px;
 `
 
 const ProductPrice = styled.p`
@@ -72,16 +52,35 @@ const ProductPrice = styled.p`
     font-weight: 900;
 `
 
-const ButtonsWrap = styled.div`
+const Wrap = styled.div`
+    margin-left: auto;
     display: flex;
-    margin-top: 20px;
-    justify-content: center;
+    flex-direction: column;
+    align-items: flex-end;
 `
 
+const ButtonsWrap = styled.div`
+    display: flex;
+    margin-top: 10px;
+`
 
-export const ProductCardTable = ({ product }) => {
+type Product = {
+    category: string,
+    description: string,
+    id: number,
+    image: string,
+    price: number,
+    title: string,
+}
+
+type Props = {
+    product: Product
+}
+
+export const ProductCardList: React.FC<Props> = ({ product }) => {
+
+    const { image, price, title, id } = product
     
-    const {image, price, title, id} = product
     return(
         <Card>
             <ImageWrap>
@@ -89,12 +88,13 @@ export const ProductCardTable = ({ product }) => {
                     src={image}
                 />
             </ImageWrap>
-            <ProductTitle>{title}</ProductTitle>
-            <Wrap>
+            <TextWrap>
+                <ProductTitle>{title}</ProductTitle>
                 <Text>Product ID: {id}</Text>
+            </TextWrap>
+            <Wrap>
                 <ProductPrice>${price}</ProductPrice>
-            </Wrap>
-            <ButtonsWrap>
+                <ButtonsWrap>
                     <Link
                         link={`product/${id}`}
                         title='More'
@@ -105,6 +105,9 @@ export const ProductCardTable = ({ product }) => {
                         data={product}
                     />
                 </ButtonsWrap>
+            </Wrap>
+            
         </Card>
     )
 }
+

@@ -1,11 +1,7 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { changeQuantity } from "../../redux/operations/operations";
 
 import { Button } from "./Button";
 import { Link } from "./link";
-import { Input } from "./input";
 
 const Card = styled.li`
     display: block;
@@ -82,23 +78,22 @@ const ButtonsWrap = styled.div`
     justify-content: center;
 `
 
+type Product = {
+    category: string,
+    description: string,
+    id: number,
+    image: string,
+    price: number,
+    title: string,
+}
 
-export const CartCardTable = ({ product }) => {
+type Props = {
+    product: Product
+}
+
+export const ProductCardTable: React.FC<Props> = ({ product }) => {
     
-       const dispatch = useDispatch()
-    const { image, price, title, id } = product
-
-    const [quantity, setQuantity] = useState(product.quantity)
-
-    useEffect(() => {
-        if (quantity < 1) {
-            setQuantity(1)
-        }
-        dispatch(changeQuantity({
-            ...product,
-            quantity
-        }))
-    }, [quantity])
+    const {image, price, title, id} = product
     return(
         <Card>
             <ImageWrap>
@@ -109,21 +104,16 @@ export const CartCardTable = ({ product }) => {
             <ProductTitle>{title}</ProductTitle>
             <Wrap>
                 <Text>Product ID: {id}</Text>
-                <Input
-                    value={quantity}
-                    setValue={setQuantity}
-                ></Input>
                 <ProductPrice>${price}</ProductPrice>
-                
             </Wrap>
             <ButtonsWrap>
                     <Link
-                        link={`/product/${id}`}
+                        link={`product/${id}`}
                         title='More'
                     />
                     <Button
-                        func='remove'
-                        title="Remove"
+                        func='add'
+                        title="Add to cart"
                         data={product}
                     />
                 </ButtonsWrap>

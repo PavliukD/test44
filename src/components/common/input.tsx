@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const StyledInput = styled.input`
-    // margin-top: 10px;
     font-size: 18px;
     line-height: 1.2;
     width: 80px;
@@ -9,10 +8,15 @@ const StyledInput = styled.input`
     text-align: center
 `
 
-export const Input = ({ value, setValue }) => {
+type Props = {
+    value: number,
+    setValue: (arg: number) => void;
+}
+
+export const Input: React.FC<Props> = ({ value, setValue }) => {
     
-    const handleChange = (e) => {
-        setValue(e.target.value)
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(Number(e.target.value))
     }
 
     return (

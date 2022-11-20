@@ -9,7 +9,11 @@ const ContainerWrap = styled.div`
     
 `
 
-export const Container = ({children}) => {
+type Props = {
+    children: any
+}
+
+export const Container: React.FC<Props> = ({children}) => {
     return (
         <ContainerWrap>
             {children}

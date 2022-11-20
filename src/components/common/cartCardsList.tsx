@@ -1,8 +1,11 @@
 import styled from "styled-components";
+import { useState, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 
 import { Button } from "./Button";
 import { Link } from "./link";
-
+import { Input } from "./input";
+import { changeQuantity } from "../../redux/reducers/slice";
 
 
 const Card = styled.li`
@@ -62,11 +65,47 @@ const Wrap = styled.div`
 const ButtonsWrap = styled.div`
     display: flex;
     margin-top: 10px;
+    margin-bottom: 10px;
 `
 
-export const ProductCardList = ({ product }) => {
+type Product = {
+    category: string,
+    description: string,
+    id: number,
+    image: string,
+    price: number,
+    title: string,
+    quantity: number
+}
 
+type Props = {
+    product: Product
+}
+
+export const CartCardList: React.FC<Props> = ({ product }) => {
+    
+    const dispatch = useAppDispatch()
     const { image, price, title, id } = product
+
+    const [quantity, setQuantity] = useState(product.quantity)
+    const cart = useAppSelector(state => state.slice.cart)
+
+    useEffect(() => {
+        if (quantity < 1) {
+            setQuantity(1)
+        }
+        let data = cart.map(item => {
+            if (item.id !== id) {
+                return item
+            }
+            return {
+                ...item,
+                quantity
+            }
+        })
+        dispatch(changeQuantity(data))
+        // eslint-disable-next-line
+    }, [quantity])
     
     return(
         <Card>
@@ -78,23 +117,26 @@ export const ProductCardList = ({ product }) => {
             <TextWrap>
                 <ProductTitle>{title}</ProductTitle>
                 <Text>Product ID: {id}</Text>
+                
             </TextWrap>
             <Wrap>
                 <ProductPrice>${price}</ProductPrice>
                 <ButtonsWrap>
                     <Link
-                        link={`product/${id}`}
+                        link={`/product/${id}`}
                         title='More'
                     />
                     <Button
-                        func='add'
-                        title="Add to cart"
+                        func='remove'
+                        title="Remove"
                         data={product}
                     />
                 </ButtonsWrap>
+                <Input
+                    value={quantity}
+                    setValue={setQuantity}
+                ></Input>
             </Wrap>
-            
         </Card>
     )
 }
-

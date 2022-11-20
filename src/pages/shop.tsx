@@ -1,13 +1,13 @@
-import { useSelector } from "react-redux/es/exports"
+import { useAppSelector } from '../redux/hooks/hooks';
 
 import { Container } from '../components/common/container';
 import { ProductsList } from '../components/productsList';
 import { SectionHead } from '../components/sectionHead';
 
-export const Shop = () => {
+export const Shop: React.FC = () => {
 
-    const {productsList} = useSelector((state) => state.slice)
-
+    const { productsList } = useAppSelector((state) =>  state.slice)
+    
     return (
         <Container>
             <SectionHead title='Our products'/>
