@@ -17,7 +17,7 @@ type Response = {
     data: Product[]
 }
 
-export const api: any = {
+export const api = {
     get: async () => {
         try {
             const resp = await axios.get('/products')
