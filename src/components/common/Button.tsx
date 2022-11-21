@@ -35,20 +35,21 @@ type Props = {
 
 export const Button: React.FC<Props> = ({ func, title, data }) => {
 
-    const { cart = [] } = useAppSelector((state) => state.slice)
+    let { cart = [] } = useAppSelector((state) => state.slice)
     const dispatch = useAppDispatch()
  
-    const {id} = data
+    const { id } = data
 
     const add = () => {
         if (cart.find(item => item.id === id)) {
             alert('the item is already in the cart')
             return
         }
-        dispatch(addToCart({
+        const newData = [...cart, {
             ...data,
             quantity: 1
-        }))
+        }]
+        dispatch(addToCart(newData))
         alert('the product has been successfully added to the cart')
     } 
     

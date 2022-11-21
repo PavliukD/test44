@@ -3,7 +3,8 @@ import { useAppSelector } from "../redux/hooks/hooks";
 import { Product } from "./utils/types";
 
 import { ProductCardList } from "./common/productCardList";
-import {ProductCardTable} from "./common/productCardTable";
+import { ProductCardTable } from "./common/productCardTable";
+import { Notification } from "./common/notification";
 
 const List = styled.ul`
     display: flex;
@@ -11,13 +12,7 @@ const List = styled.ul`
     width: 100%;
 `
 
-const Notification = styled.h3`
-    padding-top: 60px;
-    padding-bottom: 60px;
-    text-align: center;
-    font-size: 32px;
-    color: tomato;
-`
+
 
 type Props = {
     products: Product[]

@@ -4,6 +4,7 @@ import { Cart } from "./utils/types";
 
 import { CartCardList } from "./common/cartCardsList";
 import { CartCardTable } from "./common/cartCardsTable";
+import { Notification } from "./common/notification";
 
 
 const List = styled.ul`
@@ -19,7 +20,8 @@ type Props = {
 export const CartList: React.FC<Props> = ({ products =[] }) => {
 
     const { view } = useAppSelector((state) => state.slice)
-    return(
+    return (
+        !products.length ? <Notification>Cart is empty</Notification> :
         <List>
             {products.map(product => {
                 if (view === 'list') {

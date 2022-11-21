@@ -56,7 +56,6 @@ export const Cart: React.FC = () => {
     const dispatch = useAppDispatch()
 
     const { cart } = useAppSelector((state) => state.slice)
-    console.log(cart)
 
     useEffect(() => {
         if (!cart) {

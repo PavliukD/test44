@@ -33,13 +33,14 @@ export const SectionHead: React.FC<Props> = ({ title }) => {
 
     return (
         <Wrap>
-            <Title>{title}</Title>
-            
+            <Title>{title}</Title>  
             <ButtonsWrap>
                 <ViewButton viewType='list'>
                     <Icon icon={`${icons}#icon-th-list-outline`}></Icon>
                 </ViewButton>
-                <ViewButton viewType='table'><Icon icon={`${icons}#icon-th-small-outline`}></Icon></ViewButton>
+                <ViewButton viewType='table'>
+                    <Icon icon={`${icons}#icon-th-small-outline`}></Icon>
+                </ViewButton>
             </ButtonsWrap>
         </Wrap>
     )
