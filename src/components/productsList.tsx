@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useAppSelector } from "../redux/hooks/hooks";
+import { Product } from "./utils/types";
 
 import { ProductCardList } from "./common/productCardList";
 import {ProductCardTable} from "./common/productCardTable";
@@ -17,15 +18,6 @@ const Notification = styled.h3`
     font-size: 32px;
     color: tomato;
 `
-
-type Product = {
-    category: string,
-    description: string,
-    id: number,
-    image: string,
-    price: number,
-    title: string
-}
 
 type Props = {
     products: Product[]

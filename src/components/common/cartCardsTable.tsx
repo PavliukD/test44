@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { changeQuantity } from "../../redux/reducers/slice";
+import { Cart } from "../utils/types";
 
 import { Button } from "./Button";
 import { Link } from "./link";
@@ -82,18 +83,8 @@ const ButtonsWrap = styled.div`
     justify-content: center;
 `
 
-type Product = {
-    category: string,
-    description: string,
-    id: number,
-    image: string,
-    price: number,
-    title: string,
-    quantity: number
-}
-
 type Props = {
-    product: Product
+    product: Cart
 }
 
 export const CartCardTable: React.FC<Props> = ({ product }) => {

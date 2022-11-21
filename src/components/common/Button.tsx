@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { addToCart, removeFromCart } from "../../redux/reducers/slice";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks/hooks";
+import { Product } from "../utils/types";
 
 
 
@@ -25,15 +26,6 @@ const StyledButton = styled.button`
         box-shadow: 0px 0px 21px -1px #FF8C00;
     }
 `
-
-type Product = {
-    category: string,
-    description: string,
-    id: number,
-    image: string,
-    price: number,
-    title: string
-}
 
 type Props = {
     func: "add" | "remove",

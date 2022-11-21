@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useAppSelector } from "../redux/hooks/hooks";
+import { Cart } from "./utils/types";
 
 import { CartCardList } from "./common/cartCardsList";
 import { CartCardTable } from "./common/cartCardsTable";
@@ -11,21 +12,11 @@ const List = styled.ul`
     width: 100%;
 `
 
-type Product = {
-    category: string,
-    description: string,
-    id: number,
-    image: string,
-    price: number,
-    title: string,
-    quantity: number
-}
-
 type Props = {
-    products: Product[]
+    products: Cart[]
 }
 
-export const CartList: React.FC<Props> = ({ products }) => {
+export const CartList: React.FC<Props> = ({ products =[] }) => {
 
     const { view } = useAppSelector((state) => state.slice)
     return(

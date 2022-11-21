@@ -43,13 +43,26 @@ const Button = styled.button`
         box-shadow: 0px 0px 21px -1px #FF8C00;
 `
 
+const Notification = styled.h3`
+    padding-top: 60px;
+    padding-bottom: 60px;
+    text-align: center;
+    font-size: 32px;
+    color: tomato;
+`
+
 export const Cart: React.FC = () => {
     const [totalPrice, setTotalPrice] = useState(0)
     const dispatch = useAppDispatch()
 
     const { cart } = useAppSelector((state) => state.slice)
+    console.log(cart)
 
     useEffect(() => {
+        if (!cart) {
+            setTotalPrice(0)
+            return
+        }
         const total = cart.reduce((total, product) => total + product.price * product.quantity, 0)
         setTotalPrice(total)
     }, [cart])
@@ -62,7 +75,7 @@ export const Cart: React.FC = () => {
     return (
         <Container>
             <SectionHead title='Order cart' />
-            <CartList products={cart}></CartList>
+            {cart ? <CartList products={cart}></CartList> : <Notification>Cart is empty</Notification>} 
             <Wrap>
                 <Title>Total: {totalPrice.toFixed(2)}</Title>
                 <Button onClick={ clickButton }>checkout</Button>

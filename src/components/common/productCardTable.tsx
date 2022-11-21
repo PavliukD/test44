@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Product } from "../utils/types";
 
 import { Button } from "./Button";
 import { Link } from "./link";
@@ -77,15 +78,6 @@ const ButtonsWrap = styled.div`
     margin-top: 20px;
     justify-content: center;
 `
-
-type Product = {
-    category: string,
-    description: string,
-    id: number,
-    image: string,
-    price: number,
-    title: string,
-}
 
 type Props = {
     product: Product

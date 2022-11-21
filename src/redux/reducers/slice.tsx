@@ -1,24 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {  fetchProducts } from "../operations/operations";
 
-type Product = {
-    category: string,
-    description: string,
-    id: number,
-    image: string,
-    price: number,
-    title: string
-}
-
-type Cart = {
-    category: string,
-    description: string,
-    id: number,
-    image: string,
-    price: number,
-    title: string,
-    quantity: number
-}
+import { Product, Cart } from '../../components/utils/types'
 
 type InitialStateType = {
     productsList: Product[],
